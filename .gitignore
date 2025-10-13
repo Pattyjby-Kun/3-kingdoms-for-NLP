@@ -1,0 +1,13 @@
+# Virtual environment
+.venv/
+
+# Output and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+
+# Optional (ถ้าไม่อยากเก็บไฟล์ output/data ขนาดใหญ่ใน repo)
+# output/
+# data/
