@@ -14,42 +14,53 @@ def clean_text(file_path: str) -> str:
     with open(file_path, "r", encoding="utf-8") as f:
         text = f.read()
 
-    # 🔹 ลบเลขหน้า / หมายเลขบรรทัด / เครื่องหมายที่ไม่จำเป็น
-    text = re.sub(r"\d+", " ", text)               # ลบตัวเลข
-    text = re.sub(r"[“”\"'()\[\]{}]", "", text)    # ลบเครื่องหมายอัญประกาศ
-    text = re.sub(r"[•\*\-–—_]", " ", text)        # ลบ bullet หรือ dash
+    # 🔹 ลบเลขไทยและเลขอารบิก
+    text = re.sub(r"[0-9๐๑๒๓๔๕๖๗๘๙]+", " ", text)
+
+    # 🔹 ลบเครื่องหมายอัญประกาศและสัญลักษณ์พิเศษ
+    text = re.sub(r"[“”\"'()\[\]{}<>]", "", text)
+    text = re.sub(r"[•\*\-–—_~^]", " ", text)
+
+    # 🔹 ลบวรรคตอนภาษาอังกฤษทั่วไป
+    text = text.translate(str.maketrans("", "", string.punctuation))
 
     # 🔹 ลบช่องว่างเกินและบรรทัดว่าง
-    text = re.sub(r"\s+", " ", text)               # ให้เหลือช่องว่างเดียว
-    text = text.strip()                            # ตัดช่องว่างหัวท้าย
+    text = re.sub(r"\s+", " ", text).strip()
 
-    # 🔹 แปลงเครื่องหมายวรรคตอนให้เป็นรูปแบบเดียวกัน (ถ้าจำเป็น)
-    text = text.translate(str.maketrans("", "", string.punctuation))
+    # 🔹 แปลง … ให้เป็นจุดเดียว (บางบทมีจุดไข่ปลา)
+    text = text.replace("…", ".")
 
     return text
 
 
-def split_sentences(text: str) -> list:
+def preprocess_all(input_dir: str, output_dir: str):
     """
-    แยกประโยคแบบง่าย ๆ สำหรับภาษาไทย
-    ใช้เมื่อเราต้องการวิเคราะห์ทีละประโยค เช่นตอนหาความสัมพันธ์
+    ทำความสะอาดทุกไฟล์ในโฟลเดอร์ input_dir แล้วบันทึกผลลัพธ์ไว้ใน output_dir
     """
-    # แยกด้วย "。" หรือ "!" หรือ "?" หรือ " " ที่จบด้วยคำพูด
-    sentences = re.split(r"[.!?]|[ ](?=[A-Zก-๙])", text)
-    sentences = [s.strip() for s in sentences if s.strip()]
-    return sentences
+    os.makedirs(output_dir, exist_ok=True)
+    files = [f for f in os.listdir(input_dir) if f.endswith(".txt")]
+
+    if not files:
+        print("⚠️ ไม่พบไฟล์ .txt ในโฟลเดอร์ chapters")
+        return
+
+    for filename in files:
+        input_path = os.path.join(input_dir, filename)
+        output_path = os.path.join(output_dir, filename.replace(".txt", "_cleaned.txt"))
+
+        try:
+            cleaned = clean_text(input_path)
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(cleaned)
+            print(f"✅ cleaned: {filename} → {os.path.basename(output_path)}")
+        except Exception as e:
+            print(f"❌ เกิดข้อผิดพลาดกับไฟล์ {filename}: {e}")
+
+    print("\n🎉 ทำความสะอาดข้อความทุกบทเรียบร้อยแล้ว!")
 
 
-# 🧪 ตัวอย่างการใช้งาน (ทดสอบเฉพาะตอนรันไฟล์นี้โดยตรง)
-
+# 🧪 ใช้งานโดยตรง
 if __name__ == "__main__":
-    path = r"D:\Trump\data\chapters\chapter1.txt"
-    cleaned = clean_text(path)
-
-    os.makedirs(r"D:\Trump\data\cleaned", exist_ok=True)
-    cleaned_path = r"D:\Trump\data\cleaned\chapter1_cleaned.txt"
-
-    with open(cleaned_path, "w", encoding="utf-8") as f:
-        f.write(cleaned)
-
-    print(f"✅ บันทึกไฟล์ cleaned แล้วที่: {cleaned_path}")
+    input_dir = r"C:\Homework\3-kingdoms-for-NLP\data\chapters"
+    output_dir = r"C:\Homework\3-kingdoms-for-NLP\data\cleaned"
+    preprocess_all(input_dir, output_dir)
