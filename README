@@ -1,0 +1,56 @@
+# 🏯 3-Kingdoms Analysis: Relationship Character using NLP
+
+Welcome to **"3-Kingdoms Analysis Relationship Character"** —  
+an NLP-based project that analyzes the relationships between characters in the *Romance of the Three Kingdoms* novel.
+
+---
+
+## 📘 Project Overview
+
+This project uses **Natural Language Processing (NLP)** techniques to:
+- 🧠 Extract **named entities** (characters, places, events)
+- 🔗 Analyze **relationships** between characters based on co-occurrence and context
+- 📊 Visualize the **relationship network** (who interacts with whom)
+- 💬 Generate summaries or relationship insights automatically
+
+---
+
+## 🧩 Features
+
+✅ Named Entity Recognition (NER)  
+✅ Relationship Extraction using rule-based or ML methods  
+✅ Visualization of character networks (Graph-based)  
+✅ Data preprocessing and text cleaning pipeline  
+✅ Output as JSON Form and Graph  
+
+---
+
+## 📂 Project Structure
+│
+├── data/ # Input text data (e.g., chapters of 3 Kingdoms)
+├── src/ # Source code for data processing and NLP models
+├── output/ # Generated results (relations, graphs, etc.)
+├── requirements.txt # Python dependencies
+└── .gitignore
+
+---------------------------------------------------------
+
+How to use basic
+1.Fine some chapter of 3-kingdoms link or file(put in data and skip preprocessing)
+2.run ner for analysis character
+3.run relationship_extraction.py then you'll wait processing just a minutes
+4.If finish processing go to output folder,You must found JSON file in chapter_relations_rulebased or graphs in graphs folder
+
+---------------------------------------------------------
+
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/Pattyjby-Kun/3-kingdoms-for-NLP.git
+cd 3-kingdoms-for-NLP
+python -m venv .venv
+source .venv/bin/activate   # (or .venv\Scripts\activate on Windows)
+pip install -r requirements.txt
+
+python src/main.py
+
