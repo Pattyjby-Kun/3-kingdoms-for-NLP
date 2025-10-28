@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import os
 import time
 
-OUTPUT_DIR = r"C:\Homework\3-kingdoms-for-NLP\data\chapters"
+OUTPUT_DIR = r"..\data\chapters"
 BASE_URL = "https://vajirayana.org/สามก๊ก/ตอนที่-{}"
 
 def to_thai_num(num: int) -> str:

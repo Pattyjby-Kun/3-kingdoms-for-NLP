@@ -61,6 +61,6 @@ def preprocess_all(input_dir: str, output_dir: str):
 
 # 🧪 ใช้งานโดยตรง
 if __name__ == "__main__":
-    input_dir = r"C:\Homework\3-kingdoms-for-NLP\data\chapters"
-    output_dir = r"C:\Homework\3-kingdoms-for-NLP\data\cleaned"
+    input_dir = r"..\data\chapters"
+    output_dir = r"..\cleaned"
     preprocess_all(input_dir, output_dir)

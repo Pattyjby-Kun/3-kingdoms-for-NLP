@@ -3,8 +3,8 @@ import json
 import networkx as nx
 from pyvis.network import Network
 
-INPUT_DIR = r"C:\Homework\3-kingdoms-for-NLP\output\chapter_relations_rulebased"
-OUTPUT_PATH = r"C:\Homework\3-kingdoms-for-NLP\output\graphs\3kingdoms_rulebased_final.html"
+INPUT_DIR = r"..\output\chapter_relations_rulebased"
+OUTPUT_PATH = r"..\output\graphs\3kingdoms_rulebased_final.html"
 
 def build_graph(input_dir):
     G = nx.Graph()

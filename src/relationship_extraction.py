@@ -3,9 +3,9 @@ import json
 from pythainlp.tokenize import sent_tokenize
 
 # 🔹 Path ของไฟล์ข้อมูล
-CHARACTER_LIST_PATH = r"C:\Homework\3-kingdoms-for-NLP\data\character_list.json"
-INPUT_DIR = r"C:\Homework\3-kingdoms-for-NLP\data\cleaned"
-OUTPUT_DIR = r"C:\Homework\3-kingdoms-for-NLP\output\chapter_relations_rulebased"
+CHARACTER_LIST_PATH = r"..\data\character_list.json"
+INPUT_DIR = r"..\data\cleaned"
+OUTPUT_DIR = r"..\output\chapter_relations_rulebased"
 
 # 🔹 คำหลักสำหรับตรวจจับความสัมพันธ์
 RELATION_KEYWORDS = {

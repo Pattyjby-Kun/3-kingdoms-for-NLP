@@ -3,9 +3,9 @@ import json
 from pythainlp.tokenize import word_tokenize
 
 # โหลดรายชื่อตัวละครจาก JSON
-CHARACTER_LIST_PATH = r"C:\Homework\3-kingdoms-for-NLP\data\character_list.json"
-INPUT_DIR = r"C:\Homework\3-kingdoms-for-NLP\data\cleaned"
-OUTPUT_PATH = r"C:\Homework\3-kingdoms-for-NLP\output\character_summary.json"
+CHARACTER_LIST_PATH = r"..\data\character_list.json"
+INPUT_DIR = r"..\data\cleaned"
+OUTPUT_PATH = r"..\output\character_summary.json"
 
 def extract_entities(file_path, characters):
     with open(file_path, "r", encoding="utf-8") as f:
