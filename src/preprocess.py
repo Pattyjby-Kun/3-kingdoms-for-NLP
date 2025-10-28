@@ -62,5 +62,5 @@ def preprocess_all(input_dir: str, output_dir: str):
 # 🧪 ใช้งานโดยตรง
 if __name__ == "__main__":
     input_dir = r"..\data\chapters"
-    output_dir = r"..\cleaned"
+    output_dir = r"..\data\cleaned"
     preprocess_all(input_dir, output_dir)
